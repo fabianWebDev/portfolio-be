@@ -1,5 +1,2 @@
-from django.shortcuts import render
-
-# Create your views here.
-def index(request):
-    return render(request, 'contact/index.html')
+# This file is no longer needed as we're using API views in contact/api/views.py
+# The template-based views have been replaced with REST API endpoints
