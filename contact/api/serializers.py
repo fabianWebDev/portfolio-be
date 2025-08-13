@@ -12,22 +12,19 @@ class ContactMessageCreateSerializer(serializers.ModelSerializer):
         model = ContactMessage
         fields = [
             'name',
-            'phone',
             'email',
-            'subject',
             'message',
         ]
     
     def validate(self, data):
         """
-        Custom validation to ensure either phone or email is provided.
+        Custom validation to ensure email is provided.
         """
-        phone = data.get('phone')
         email = data.get('email')
         
-        if not phone and not email:
+        if not email:
             raise serializers.ValidationError(
-                "You must provide either a phone number or email address"
+                "You must provide an email address"
             )
         
         return data
@@ -51,7 +48,6 @@ class ContactMessageResponseSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'email',
-            'subject',
             'message',
             'created_at',
         ]

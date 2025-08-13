@@ -15,8 +15,6 @@ class ContactMessageAdmin(admin.ModelAdmin):
     list_display = [
         'name',
         'email',
-        'phone',
-        'subject',
         'is_read',
         'is_responded',
         'created_at'
@@ -34,18 +32,16 @@ class ContactMessageAdmin(admin.ModelAdmin):
     search_fields = [
         'name',
         'email',
-        'phone',
-        'subject',
         'message'
     ]
 
     # Fields to display in the detail view
     fieldsets = (
         ('Contact Information', {
-            'fields': ('name', 'email', 'phone')
+            'fields': ('name', 'email')
         }),
         ('Message Content', {
-            'fields': ('subject', 'message')
+            'fields': ('message',)
         }),
         ('Status', {
             'fields': ('is_read', 'is_responded', 'read_at', 'responded_at'),

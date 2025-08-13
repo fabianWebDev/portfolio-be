@@ -18,14 +18,6 @@ class ContactMessage(models.Model):
         help_text="Full name of the person sending the message (maximum 100 characters)"
     )
     
-    phone = models.CharField(
-        max_length=20,
-        verbose_name="Phone number",
-        help_text="Phone number for contact (maximum 20 characters)",
-        blank=True,
-        null=True
-    )
-    
     email = models.EmailField(
         verbose_name="Email address",
         help_text="Email address for contact",
@@ -36,15 +28,7 @@ class ContactMessage(models.Model):
         verbose_name="Message",
         help_text="Content of the contact message"
     )
-    
-    # Additional recommended fields
-    subject = models.CharField(
-        max_length=200,
-        verbose_name="Subject",
-        help_text="Subject of the message (maximum 200 characters)",
-        blank=True
-    )
-    
+
     # Status fields
     is_read = models.BooleanField(
         default=False,
@@ -97,10 +81,10 @@ class ContactMessage(models.Model):
         """Custom model validation"""
         super().clean()
         
-        # Validate that either phone or email is provided
-        if not self.phone and not self.email:
+        # Validate that email is provided
+        if not self.email:
             raise ValidationError(
-                "You must provide either a phone number or email address"
+                "You must provide an email address"
             )
     
     def mark_as_read(self):
@@ -125,7 +109,7 @@ class ContactMessage(models.Model):
     @property
     def contact_info(self):
         """Returns the primary contact information"""
-        return self.email if self.email else self.phone
+        return self.email
     
     @property
     def is_new(self):

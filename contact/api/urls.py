@@ -5,5 +5,5 @@ app_name = 'contact_api'
 
 urlpatterns = [
     # Create new contact message
-    path('contact/', ContactMessageCreateView.as_view(), name='contact-create'),
+    path('contact', ContactMessageCreateView.as_view(), name='contact-create'),
 ]
