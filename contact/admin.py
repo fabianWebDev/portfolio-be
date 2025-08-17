@@ -11,7 +11,6 @@ class ContactMessageAdmin(admin.ModelAdmin):
     Provides a comprehensive interface for managing contact messages.
     """
 
-    # Fields to display in the list view
     list_display = [
         'name',
         'email',
@@ -20,7 +19,6 @@ class ContactMessageAdmin(admin.ModelAdmin):
         'created_at'
     ]
 
-    # Fields to filter by
     list_filter = [
         'is_read',
         'is_responded',
@@ -28,14 +26,12 @@ class ContactMessageAdmin(admin.ModelAdmin):
         'updated_at'
     ]
 
-    # Fields to search in
     search_fields = [
         'name',
         'email',
         'message'
     ]
 
-    # Fields to display in the detail view
     fieldsets = (
         ('Contact Information', {
             'fields': ('name', 'email')
@@ -53,7 +49,6 @@ class ContactMessageAdmin(admin.ModelAdmin):
         })
     )
 
-    # Read-only fields
     readonly_fields = [
         'created_at',
         'updated_at',
@@ -61,16 +56,12 @@ class ContactMessageAdmin(admin.ModelAdmin):
         'responded_at'
     ]
 
-    # Actions
     actions = ['mark_as_read', 'mark_as_responded']
 
-    # Ordering
     ordering = ['-created_at']
 
-    # Items per page
     list_per_page = 25
 
-    # Date hierarchy
     date_hierarchy = 'created_at'
 
     def mark_as_read(self, request, queryset):
